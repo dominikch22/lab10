@@ -10,8 +10,14 @@ namespace lab10
 {
     class Lyrics
     {
-        public List<Timestamp> timestamps;
-        public List<String> Lines;
+        public List<Timestamp> Timestamps;
+        public List<string> Lines;
+
+        public Lyrics() {
+            Timestamps = new List<Timestamp>();
+            Lines = new List<string>();
+
+        }
 
         public static Lyrics readFromSrt(String srtText) {
             Lyrics lyrics = new Lyrics();
@@ -38,8 +44,8 @@ namespace lab10
                         timestamp.startMillseconds = startmilliseconds;
                         timestamp.endMilliseocnds = endmilliseconds;
 
-                        lyrics.Lines.Add(reader.ReadLine());
-                        lyrics.timestamps.Add(timestamp);
+                        lyrics.Lines.Add(reader.ReadLine().Replace("\\n", "\r\n"));
+                        lyrics.Timestamps.Add(timestamp);
 
                         line = reader.ReadLine();
                     }
@@ -57,9 +63,9 @@ namespace lab10
 
 
 
-        public String getCurrentLine(int milliseconds) {
-            for (int i = 0; i < timestamps.Count; i++) {
-                if (timestamps[i].isBetween(milliseconds)) {
+        public string getCurrentLine(int milliseconds) {
+            for (int i = 0; i < Timestamps.Count; i++) {
+                if (Timestamps[i].isBetween(milliseconds)) {
                     return Lines[i];
                 }
             }

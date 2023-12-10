@@ -61,37 +61,73 @@ namespace lab10.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscribe for more Christmas Songs ❤
-        ///
-        ///Silent night, holy night, all is calm, all is bright
-        ///
-        ///Round yon virgin mother and child, holy infant so tender and mild
-        ///
-        ///Sleep in heavenly peace, sleep in heavenly peace.
-        ///
-        ///Silent night, holy night! Shepherds quake at the sight
-        ///
-        ///Glories stream from heaven afar, heavenly hosts sing Alleluia!
-        ///
-        ///Christ, the saviour is born, Christ the saviour is born.
-        ///
-        ///Silent night, holy night! Son of God love&apos;s pure light,
-        ///
-        ///Radiant beams from thy holy face with the dawn of redeeming grace,
-        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static string _English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_ {
+        internal static byte[] _English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_ {
             get {
-                return ResourceManager.GetString("_English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_", resourceCulture);
+                object obj = ResourceManager.GetObject("_English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Silent_Night___Instrumental_with_Lyrics__no_vocals_ {
+        internal static byte[] _English__We_Wish_You_a_Merry_Christmas_with_Lyrics_Christmas_Carol___Song__DownSub_com_ {
             get {
-                return ResourceManager.GetStream("Silent_Night___Instrumental_with_Lyrics__no_vocals_", resourceCulture);
+                object obj = ResourceManager.GetObject("_English__We_Wish_You_a_Merry_Christmas_with_Lyrics_Christmas_Carol___Song__DownS" +
+                        "ub_com_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] nocenj_ciszy {
+            get {
+                object obj = ResourceManager.GetObject("nocenj_ciszy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] silent_night_audio {
+            get {
+                object obj = ResourceManager.GetObject("silent_night_audio", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_ {
+            get {
+                object obj = ResourceManager.GetObject("We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_ {
+            get {
+                object obj = ResourceManager.GetObject("Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] x2mate_com___We_Wish_You_a_Merry_Christmas__Instrumental___128_kbps_ {
+            get {
+                object obj = ResourceManager.GetObject("x2mate_com___We_Wish_You_a_Merry_Christmas__Instrumental___128_kbps_", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -118,10 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Silent_Night___Instrumental_with_Lyrics__no_vocals_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Silent Night - Instrumental with Lyrics (no vocals).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="nocenj_ciszy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nocenj_ciszy.srt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="silent_night_audio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\x2mate (mp3cut.net).mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\We Wish You a Merry Christmas (Instrumental) [TubeRipper.com].mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wśród Nocnej Ciszy - karaoke [TubeRipper.com].mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="x2mate_com___We_Wish_You_a_Merry_Christmas__Instrumental___128_kbps_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\x2mate.com - We Wish You a Merry Christmas (Instrumental) (128 kbps).mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="_English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\[English] Silent Night with Lyrics Christmas Carol [DownSub.com].txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Resources\[English] Silent Night with Lyrics Christmas Carol [DownSub.com].srt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_English__We_Wish_You_a_Merry_Christmas_with_Lyrics_Christmas_Carol___Song__DownSub_com_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\[English] We Wish You a Merry Christmas with Lyrics Christmas Carol &amp; Song [DownSub.com].srt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
