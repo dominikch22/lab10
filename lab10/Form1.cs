@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,9 +16,13 @@ namespace lab10
 {
     public partial class Form1 : Form
     {
-        private int timeMilliseconds = 0;
+        private int timeMilliseconds;
         private Lyrics CurrentLyrics;
-        private Stream CurrentAudio;
+        private string CurrentAudio;
+        private System.Windows.Forms.Timer timer;
+        private CancellationTokenSource cts;
+        private Lyrics SelectedLyrics;
+        private string htmlLyrics;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +30,15 @@ namespace lab10
             audioList.Items.Add("We wish you a merry christmas");
             audioList.Items.Add("Wśród nocnej ciszy");
 
+            cts = new CancellationTokenSource();
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += TimerTick;
+            timeMilliseconds = 0;
+            timer.Start();
+
+            CurrentLyrics = null;
+            htmlLyrics = "";
         }
 
 
@@ -32,16 +46,14 @@ namespace lab10
         {
             try
             {
-                Task.Run(() => PlaySoundAsync(CurrentAudio));
+                cts.Cancel();
+                cts = new CancellationTokenSource();
 
-                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-                timer.Interval = 100;
+                CurrentLyrics = SelectedLyrics;
+                Task myTask = Task.Run(() => PlaySoundAsync(CurrentAudio, cts.Token));
+            
                 timeMilliseconds = 0;
 
-
-                timer.Tick += TimerTick;
-
-                timer.Start();
             }
             catch { 
             }
@@ -51,78 +63,95 @@ namespace lab10
         }
 
         private void TimerTick(object sender, EventArgs e) {
-            timeMilliseconds += 110;
-            lyricsLabel.Text = CurrentLyrics.getCurrentLine(timeMilliseconds);
+            if (CurrentLyrics != null) {
+                timeMilliseconds += 1010;
 
+                htmlLyrics = "";
+                if (fullText.Checked)
+                {
+                    for (int i = 0; i < CurrentLyrics.Lines.Count; i++) {
+                        if (CurrentLyrics.Timestamps[i].isBetween(timeMilliseconds))
+                        {
+                            htmlLyrics += "<b>";
+                            htmlLyrics += CurrentLyrics.Lines[i].Replace("\r\n", "</br>");
+                            htmlLyrics += "</b>";
+                            htmlLyrics += "</br>";
+                        }
+                        else {
+                            htmlLyrics += CurrentLyrics.Lines[i].Replace("\r\n", "</br>");
+                            htmlLyrics += "</br>";
+                        }
+                    }                 
+                }
+                else {
+                    htmlLyrics = CurrentLyrics.getCurrentLine(timeMilliseconds).Replace("\r\n", "</br>");
+                }
+                browserLyrics.DocumentText = htmlLyrics;
+            }       
         }
 
-        static async Task PlaySoundAsync(Stream stream)
+        static async Task PlaySoundAsync(string path, CancellationToken cancellationToken)
         {
-
             try
             {
-                // Create an MP3 file reader
-                using (var mp3FileReader = new Mp3FileReader(stream))
-                {
-                    // Create a WaveOutEvent for playback
-                    using (var waveOut = new WaveOutEvent())
+                using (Stream stream = MusicsList.getAudioByTitle(path)) {
+                    using (var mp3FileReader = new Mp3FileReader(stream))
                     {
-                        // Set the MP3 file reader as the source
-                        waveOut.Init(mp3FileReader);
-
-                        // Start playback asynchronously
-                        waveOut.Play();
-
-                        // Wait for the audio to finish playing (optional)
-                        while (waveOut.PlaybackState == PlaybackState.Playing)
+                        using (var waveOut = new WaveOutEvent())
                         {
-                            await Task.Delay(100); // Adjust the delay as needed
+                            waveOut.Init(mp3FileReader);
+
+                            waveOut.Play();
+
+                            while (waveOut.PlaybackState == PlaybackState.Playing)
+                            {
+                                cancellationToken.ThrowIfCancellationRequested();
+                                await Task.Delay(100);
+                            }
+
                         }
-                        
                     }
                 }
+               
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-            }
-            finally {
-                //stream.Dispose();
-            }
+            }          
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (audioList.SelectedItem.ToString().Equals("Silent Night"))
+            CurrentAudio = audioList.SelectedItem.ToString();
+            SelectedLyrics = MusicsList.getLyricsByTitle(CurrentAudio);         
+        }
+
+        private void selectAudio_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                byte[] bytes = Properties.Resources.silent_night_audio;
-                MemoryStream memoryStream = new MemoryStream(bytes);
-                CurrentAudio = memoryStream;
+                string selectedAudioPath = openFileDialog.FileName;
 
-                string lyrics = System.Text.Encoding.UTF8.GetString(Properties.Resources._English__Silent_Night_with_Lyrics_Christmas_Carol__DownSub_com_); ;
-
-                CurrentLyrics = Lyrics.readFromSrt(lyrics);
+                audioPath.Text = selectedAudioPath;
             }
-            else if (audioList.SelectedItem.ToString().Equals("We wish you a merry christmas"))
+        }
+
+        private void selectLyrics_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                byte[] bytes = Properties.Resources.We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_;
-                MemoryStream memoryStream = new MemoryStream(bytes);
-                CurrentAudio = memoryStream;
+                string selectedLyricsPath = openFileDialog.FileName;
+                lyricsPath.Text = selectedLyricsPath;
 
-                string lyrics = System.Text.Encoding.UTF8.GetString(Properties.Resources._English__We_Wish_You_a_Merry_Christmas_with_Lyrics_Christmas_Carol___Song__DownSub_com_); ;
-
-                CurrentLyrics = Lyrics.readFromSrt(lyrics);
+                SelectedLyrics = MusicsList.getLyricsByTitle(selectedLyricsPath);       
             }
-            else if (audioList.SelectedItem.ToString().Equals("Wśród nocnej ciszy"))
-            {
-                byte[] bytes = Properties.Resources.Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_;
-                MemoryStream memoryStream = new MemoryStream(bytes);
-                CurrentAudio = memoryStream;
+        }
 
-                string lyrics = System.Text.Encoding.UTF8.GetString(Properties.Resources.nocenj_ciszy); ;
+        private void fullText_CheckedChanged(object sender, EventArgs e)
+        {
 
-                CurrentLyrics = Lyrics.readFromSrt(lyrics);
-            }
         }
     }
 }

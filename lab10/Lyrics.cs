@@ -11,11 +11,11 @@ namespace lab10
     class Lyrics
     {
         public List<Timestamp> Timestamps;
-        public List<string> Lines;
+        public List<String> Lines;
 
         public Lyrics() {
             Timestamps = new List<Timestamp>();
-            Lines = new List<string>();
+            Lines = new List<String>();
 
         }
 

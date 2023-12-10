@@ -83,6 +83,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Lyrics.cs" />
+    <Compile Include="MusicsList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timestamp.cs" />
@@ -117,7 +118,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\x2mate %28mp3cut.net%29.mp3" />
+    <EmbeddedResource Include="Resources\x2mate %28mp3cut.net%29.mp3" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\x2mate.com - We Wish You a Merry Christmas %28Instrumental%29 %28128 kbps%29.mp3" />
