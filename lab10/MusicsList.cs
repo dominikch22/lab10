@@ -11,27 +11,29 @@ namespace lab10
     {
         public static Stream getAudioByTitle(string title) {
 
+
             if (title.Equals("Silent Night"))
             {
 
-                 byte[] bytes = Properties.Resources.silent_night_audio;
-                 return  new MemoryStream(bytes);
-           
+                byte[] bytes = Properties.Resources.silent_night_audio;
+                return new MemoryStream(bytes);
+
             }
             else if (title.Equals("We wish you a merry christmas"))
             {
-                  byte[] bytes = Properties.Resources.We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_;
-                  return new MemoryStream(bytes);
-         
+                byte[] bytes = Properties.Resources.We_Wish_You_a_Merry_Christmas__Instrumental___TubeRipper_com_;
+                return new MemoryStream(bytes);
+
             }
             else if (title.Equals("Wśród nocnej ciszy"))
             {
-                 byte[] bytes = Properties.Resources.Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_;
-                 return new MemoryStream(bytes);
+                byte[] bytes = Properties.Resources.Wśród_Nocnej_Ciszy___karaoke__TubeRipper_com_;
+                return new MemoryStream(bytes);
 
             }
 
             return new FileStream(title, FileMode.Open, FileAccess.Read);
+
         }
 
         public static Lyrics getLyricsByTitle(string title) {

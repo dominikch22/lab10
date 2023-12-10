@@ -134,6 +134,7 @@ namespace lab10
                 string selectedAudioPath = openFileDialog.FileName;
 
                 audioPath.Text = selectedAudioPath;
+                CurrentAudio = selectedAudioPath;
             }
         }
 
